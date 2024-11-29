@@ -1,0 +1,57 @@
+{
+  "menu": [
+    {
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "dashboard",
+      "badge": [
+        "primary",
+        "5"
+      ]
+    },
+
+    {
+      "url": "recruitment",
+      "name": "RECRUITMENT",
+      "icon": "menu-icon tf-icons ti ti-mail",
+      "slug": "recruitment"
+    },
+    {
+      "url": "applicant",
+      "name": "APPLICANT MANAGEMENT",
+      "icon": "menu-icon tf-icons ti ti-messages",
+      "slug": "applicant"
+    },
+    {
+      "url": "newhire",
+      "name": "NEW HIRE ONBOARD",
+      "icon": "menu-icon tf-icons ti ti-calendar",
+      "slug": "newhire"
+    },
+    {
+      "url": "performance",
+      "name": "PERFORMANCE MANAGEMENT",
+      "icon": "menu-icon tf-icons ti ti-layout-kanban",
+      "slug": "performance"
+    },
+  {
+      "url": "recognition",
+      "name": "SOCIAL RECOGNITION",
+      "icon": "menu-icon tf-icons ti ti-layout-kanban",
+      "slug": "recognition"
+    },
+  {
+      "url": "jobqualification/view",
+      "name": "JOBREQUEST",
+      "icon": "menu-icon tf-icons ti ti-layout-kanban",
+      "slug": "jobqualification-view"
+    },{
+      "url": "user/account",
+      "name": "User Account",
+      "icon": "menu-icon tf-icons ti ti-user ",
+      "slug": "user-account"
+    }
+
+
+  ]
+}
