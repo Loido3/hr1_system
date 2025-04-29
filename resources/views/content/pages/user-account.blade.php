@@ -89,7 +89,6 @@
               <th>Email</th>
               <th>Role</th>
               <th>Date Created</th>
-              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -103,9 +102,8 @@
                     <td>{{ $claim->email }}</td>
                     <td>{{ $claim->role}}</td>
                     <td>{{ $claim->created_at }}</td>
-                    <td>{{$claim->status}}</td>
                     <td>
-                    <form  action="{{url('/deleted')}}"  class="mb-3" method="POST">
+                  <form  action="{{url('/deleted')}}"  class="mb-3" method="POST">
                           @METHOD('POST')
                            @csrf
                            <input type="hidden" name="user_id" value="{{ $claim->id }}">
@@ -194,19 +192,11 @@
    <div class="form-group">
    <select class="form-control" name="roleupdate" id="roleupdate">
           <option>Hr Staff</option>
-     <option>Admin</option>
+     <option>admin</option>
  
    </select>
    </div>
 
-
-            <label>STATUS</label>
-   <div class="form-group">
-   <select class="form-control" name="statusupdate" id="statusupdate">
-     <option>Inactive</option>
-       <option>Active</option>
-   </select>
-   </div>
 
 
 
@@ -273,7 +263,3 @@
 
 
 </script>
-
-
-
-

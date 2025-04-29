@@ -171,48 +171,18 @@ use App\Http\Controllers\maps\Leaflet;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 Route::middleware('auth')->group(function(){
-
 Route::post('/deleted', [App\Http\Controllers\UseraccountController::class,'destroy'])->name('destroy');
 Route::post('/updateuser', [App\Http\Controllers\UseraccountController::class,'update'])->name('update');
 Route::get('/user/account', [App\Http\Controllers\UseraccountController::class, 'index'])->name('user-account');
 Route::post('/user_account', [App\Http\Controllers\UseraccountController::class,'store'])->name('user_account.store');
-
-
-
 Route::post('/storeImage', [UserProfile::class,'storeImage'])->name('storeImage');
 Route::post('/userupdate', [UserProfile::class,'update'])->name('userupdate');
 Route::get('/pages/profile-user', [UserProfile::class, 'index'])->name('pages-profile-user');
 
-
-
-
-
+Route::get('/dashboard/view', [App\Http\Controllers\dashboardcontroller::class,'index'])->name('dashboard-view');
 
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Main Page Route
@@ -221,34 +191,36 @@ Route::get('/', [App\Http\Controllers\jobportalController::class,'index'])->name
 Route::post('/', [App\Http\Controllers\jobportalController::class,'login'])->name('login');
 Route::get('/jobportal', [App\Http\Controllers\jobportalprofileController::class,'index'])->name('jobportal-view');
 Route::post('/jobportal.storeImage', [App\Http\Controllers\jobportalprofileController::class,'storeImage'])->name('jobportal.storeImage');
+Route::post('/uploadresume', [App\Http\Controllers\jobportalprofileController::class,'storefile'])->name('storefile');
 
 Route::get('/about', [App\Http\Controllers\aboutController::class,'index'])->name('about-view');
 Route::post('/description', [App\Http\Controllers\viewdescriptionController::class,'stored'])->name('description.stored');
 Route::get('/description', [App\Http\Controllers\viewdescriptionController::class,'index'])->name('view-description');
 
+Route::get('/applicant/exam', [App\Http\Controllers\examController::class,'index'])->name('applicant-exam');
+Route::post('/exams', [App\Http\Controllers\examController::class,'storeexam'])->name('storeexam');
+
+
 Route::post('/descriptions', [App\Http\Controllers\viewdescriptionController::class,'getmoto'])->name('getmoto');
 Route::get('/signup', [App\Http\Controllers\signupController::class,'index'])->name('signup');
 Route::post('/signup', [App\Http\Controllers\signupController::class,'store'])->name('store');
+
 Route::get('/jobqualification/view', [App\Http\Controllers\job_controller::class,'index'])->name('jobqualification-view');
+
 Route::post('/jobqualification/view', [App\Http\Controllers\job_controller::class,'update'])->name('update');
 Route::post('/Recruiteupdating', [App\Http\Controllers\apps\Recruitment::class,'Recruiteupdating'])->name('Recruiteupdating');
 Route::post('/Recruiteupdate', [App\Http\Controllers\apps\Recruitment::class, 'Recruiteupdate'])->name('Recruiteupdate');
 Route::get('/recruitment', [App\Http\Controllers\apps\Recruitment::class, 'index'])->name('recruitment');
 Route::post('/recruitment', [App\Http\Controllers\apps\Recruitment::class, 'application'])->name('recruitment.application');
+
 // Route to view applicants
 Route::get('/applicant', [Applicant::class, 'index'])->name('applicant.index');
+
 //Route  to  Reject applicant
 Route::post('/applicant.reject',[Applicant::class,'reject'])->name('applicant.reject');
 Route::post('/applicant.approved',[Applicant::class,'approved'])->name('applicant.approved');
+
 Route::post('/applicant.hired',[Applicant::class,'hired'])->name('applicant.hired');
-
-
-
-
-
-
-
-
 Route::get('/auth/logi/basic', [Login::class, 'index'])->name('auth-login-basic');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
 // locale
@@ -275,38 +247,33 @@ Route::get('/front-pages/payment', [Payment::class, 'index'])->name('front-pages
 Route::get('/front-pages/checkout', [Checkout::class, 'index'])->name('front-pages-checkout');
 Route::get('/front-pages/help-center', [HelpCenter::class, 'index'])->name('front-pages-help-center');
 Route::get('/front-pages/help-center-article', [HelpCenterArticle::class, 'index'])->name('front-pages-help-center-article');
-
 // apps
-
-
 // Routes for approving and rejecting applicants
 Route::get('/newhire', [Newhire::class, 'index'])->name('newhire.index'); // For displaying the form
-Route::post('/newhire', [Newhire::class, 'store'])->name('newhire.store'); // For storing the data
-
+///Route::post('/newhire', [Newhire::class, 'store'])->name('newhire.store'); // For storing the 
+Route::post('/deployed', [Newhire::class, 'deploy'])->name('deploy'); // For storing the 
 Route::get('/performance', [Performance::class, 'index'])->name('performance');
+Route::post('/performancestore', [Performance::class, 'store'])->name('store');
+Route::post('/performanceupdate', [Performance::class, 'updateperformance'])->name('updateperformance');
+
+
+
 // Route for displaying the form
 Route::get('/recognition', [Recognition::class, 'index'])->name('recognition.index');
 // Route for storing the recognition
-Route::post('/recognition', [Recognition::class, 'store'])->name('recognition.store');
+
+Route::post('/socialrecognition', [Recognition::class, 'store'])->name('store');
+Route::post('/socialrecognitionstore', [Recognition::class, 'storerecog'])->name('storerecog');
+
+
 Route::get('/app/ecommerce/dashboard', [EcommerceDashboard::class, 'index'])->name('app-ecommerce-dashboard');
-
-
-
-
 Route::get('/app/ecommerce/product/list', [EcommerceProductList::class, 'index'])->name('app-ecommerce-product-list');
 Route::get('/app/ecommerce/product/add', [EcommerceProductAdd::class, 'index'])->name('app-ecommerce-product-add');
-
 Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name('app-ecommerce-product-category');
-
 Route::get('/app/ecommerce/order/list', [EcommerceOrderList::class, 'index'])->name('app-ecommerce-order-list');
 Route::get('app/ecommerce/order/details', [EcommerceOrderDetails::class, 'index'])->name('app-ecommerce-order-details');
-
-
 Route::get('app/ecommerce/customer/details/overview', [EcommerceCustomerDetailsOverview::class, 'index'])->name('app-ecommerce-customer-details-overview');
 Route::get('app/ecommerce/customer/details/security', [EcommerceCustomerDetailsSecurity::class, 'index'])->name('app-ecommerce-customer-details-security');
-
-
-
 Route::get('app/ecommerce/customer/details/notifications', [EcommerceCustomerDetailsNotifications::class, 'index'])->name('app-ecommerce-customer-details-notifications');
 Route::get('/app/ecommerce/manage/reviews', [EcommerceManageReviews::class, 'index'])->name('app-ecommerce-manage-reviews');
 Route::get('/app/ecommerce/referrals', [EcommerceReferrals::class, 'index'])->name('app-ecommerce-referrals');
@@ -317,11 +284,7 @@ Route::get('/app/ecommerce/settings/shipping', [EcommerceSettingsShipping::class
 Route::get('/app/ecommerce/settings/locations', [EcommerceSettingsLocations::class, 'index'])->name('app-ecommerce-settings-locations');
 Route::get('/app/ecommerce/settings/notifications', [EcommerceSettingsNotifications::class, 'index'])->name('app-ecommerce-settings-notifications');
 Route::get('/app/academy/dashboard', [AcademyDashboard::class, 'index'])->name('app-academy-dashboard');
-
-
 Route::get('/app/academy/course-details', [AcademyCourseDetails::class, 'index'])->name('app-academy-course-details');
-
-
 Route::get('/app/logistics/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
 Route::get('/app/logistics/fleet', [LogisticsFleet::class, 'index'])->name('app-logistics-fleet');
 Route::get('/app/invoice/list', [InvoiceList::class, 'index'])->name('app-invoice-list');
@@ -335,7 +298,6 @@ Route::get('/app/user/view/billing', [UserViewBilling::class, 'index'])->name('a
 Route::get('/app/user/view/notifications', [UserViewNotifications::class, 'index'])->name('app-user-view-notifications');
 Route::get('/app/user/view/connections', [UserViewConnections::class, 'index'])->name('app-user-view-connections');
 Route::get('/app/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
-
 // pages
 Route::get('/pages/profile-teams', [UserTeams::class, 'index'])->name('pages-profile-teams');
 Route::get('/pages/profile-projects', [UserProjects::class, 'index'])->name('pages-profile-projects');
@@ -351,18 +313,15 @@ Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-e
 Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
 Route::get('/pages/misc-comingsoon', [MiscComingSoon::class, 'index'])->name('pages-misc-comingsoon');
 Route::get('/pages/misc-not-authorized', [MiscNotAuthorized::class, 'index'])->name('pages-misc-not-authorized');
-
 // authentication
 // Show the login form
 Route::get('/login', [Login::class, 'index'])->name('login');
 // Handle the login form submission
 Route::post('/login', [Login::class, 'login'])->name('login.post');
-
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 //sign up route
 Route::get('/register', [Register::class, 'index'])->name('register.index');
 Route::post('/register', [Register::class, 'register'])->name('register.store');
-
 Route::get('/auth/register-cover', [RegisterCover::class, 'index'])->name('auth-register-cover');
 Route::get('/auth/register-multisteps', [RegisterMultiSteps::class, 'index'])->name('auth-register-multisteps');
 Route::get('/auth/verify-email-basic', [VerifyEmailBasic::class, 'index'])->name('auth-verify-email-basic');
@@ -373,15 +332,12 @@ Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])
 Route::get('/auth/forgot-password-cover', [ForgotPasswordCover::class, 'index'])->name('auth-forgot-password-cover');
 Route::get('/auth/two-steps-basic', [TwoStepsBasic::class, 'index'])->name('auth-two-steps-basic');
 Route::get('/auth/two-steps-cover', [TwoStepsCover::class, 'index'])->name('auth-two-steps-cover');
-
 // wizard example
 Route::get('/wizard/ex-checkout', [WizardCheckout::class, 'index'])->name('wizard-ex-checkout');
 Route::get('/wizard/ex-property-listing', [PropertyListing::class, 'index'])->name('wizard-ex-property-listing');
 Route::get('/wizard/ex-create-deal', [CreateDeal::class, 'index'])->name('wizard-ex-create-deal');
-
 // modal
 Route::get('/modal-examples', [ModalExample::class, 'index'])->name('modal-examples');
-
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
 Route::get('/cards/advance', [CardAdvance::class, 'index'])->name('cards-advance');
@@ -389,7 +345,6 @@ Route::get('/cards/statistics', [CardStatistics::class, 'index'])->name('cards-s
 Route::get('/cards/analytics', [CardAnalytics::class, 'index'])->name('cards-analytics');
 Route::get('/cards/gamifications', [CardGamifications::class, 'index'])->name('cards-gamifications');
 Route::get('/cards/actions', [CardActions::class, 'index'])->name('cards-actions');
-
 // User Interface
 Route::get('/ui/accordion', [Accordion::class, 'index'])->name('ui-accordion');
 Route::get('/ui/alerts', [Alerts::class, 'index'])->name('ui-alerts');
@@ -410,7 +365,6 @@ Route::get('/ui/tabs-pills', [TabsPills::class, 'index'])->name('ui-tabs-pills')
 Route::get('/ui/toasts', [Toasts::class, 'index'])->name('ui-toasts');
 Route::get('/ui/tooltips-popovers', [TooltipsPopovers::class, 'index'])->name('ui-tooltips-popovers');
 Route::get('/ui/typography', [Typography::class, 'index'])->name('ui-typography');
-
 // extended ui
 Route::get('/extended/ui-avatar', [Avatar::class, 'index'])->name('extended-ui-avatar');
 Route::get('/extended/ui-blockui', [BlockUI::class, 'index'])->name('extended-ui-blockui');
@@ -425,11 +379,9 @@ Route::get('/extended/ui-timeline-fullscreen', [TimelineFullscreen::class, 'inde
 Route::get('/extended/ui-tour', [Tour::class, 'index'])->name('extended-ui-tour');
 Route::get('/extended/ui-treeview', [Treeview::class, 'index'])->name('extended-ui-treeview');
 Route::get('/extended/ui-misc', [Misc::class, 'index'])->name('extended-ui-misc');
-
 // icons
 Route::get('/icons/tabler', [Tabler::class, 'index'])->name('icons-tabler');
 Route::get('/icons/font-awesome', [FontAwesome::class, 'index'])->name('icons-font-awesome');
-
 // form elements
 Route::get('/forms/basic-inputs', [BasicInput::class, 'index'])->name('forms-basic-inputs');
 Route::get('/forms/input-groups', [InputGroups::class, 'index'])->name('forms-input-groups');
@@ -441,30 +393,25 @@ Route::get('/forms/selects', [Selects::class, 'index'])->name('forms-selects');
 Route::get('/forms/sliders', [Sliders::class, 'index'])->name('forms-sliders');
 Route::get('/forms/switches', [Switches::class, 'index'])->name('forms-switches');
 Route::get('/forms/extras', [Extras::class, 'index'])->name('forms-extras');
-
 // form layouts
 Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form-layouts-vertical');
 Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 Route::get('/form/layouts-sticky', [StickyActions::class, 'index'])->name('form-layouts-sticky');
-
 // form wizards
 Route::get('/form/wizard-numbered', [FormWizardNumbered::class, 'index'])->name('form-wizard-numbered');
 Route::get('/form/wizard-icons', [FormWizardIcons::class, 'index'])->name('form-wizard-icons');
 Route::get('/form/validation', [Validation::class, 'index'])->name('form-validation');
-
 // tables
 Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
 Route::get('/tables/datatables-basic', [DatatableBasic::class, 'index'])->name('tables-datatables-basic');
 Route::get('/tables/datatables-advanced', [DatatableAdvanced::class, 'index'])->name('tables-datatables-advanced');
 Route::get('/tables/datatables-extensions', [DatatableExtensions::class, 'index'])->name('tables-datatables-extensions');
-
 // charts
 Route::get('/charts/apex', [ApexCharts::class, 'index'])->name('charts-apex');
 Route::get('/charts/chartjs', [ChartJs::class, 'index'])->name('charts-chartjs');
-
 // maps
 Route::get('/maps/leaflet', [Leaflet::class, 'index'])->name('maps-leaflet');
-
 // laravel example
 Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
 Route::resource('/user-list', UserManagement::class);
+

@@ -1,27 +1,41 @@
 {
   "menu": [
     {
+       "url": "dashboard/view",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "dashboard",
+      "slug": "dashboard-view",
       "badge": [
         "primary",
         "5"
+
+
       ]
     },
-
     {
       "url": "recruitment",
       "name": "RECRUITMENT",
       "icon": "menu-icon tf-icons ti ti-mail",
       "slug": "recruitment"
-    },
-    {
+    },{
+      "name": "APPLICANT MANAGEMENT",
+      "icon": "menu-icon tf-icons ti ti-layout-sidebar",
+      "slug": "layouts",
+      "submenu": [
+        {
       "url": "applicant",
       "name": "APPLICANT MANAGEMENT",
       "icon": "menu-icon tf-icons ti ti-messages",
       "slug": "applicant"
+    },     {
+      "url": "applicant/exam",
+      "name": "APPLICANT EXAM",
+      "icon": "menu-icon tf-icons ti ti-clock",
+      "slug": "applicant-view"
+    }
+      ]
     },
+
     {
       "url": "newhire",
       "name": "NEW HIRE ONBOARD",

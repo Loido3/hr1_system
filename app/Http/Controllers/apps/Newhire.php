@@ -12,10 +12,22 @@ class Newhire extends Controller
 {
   public function index()
   {
-    $newEmployees = DB::select("SELECT *,hr1_applicant_apply.status as applicant_status FROM `hr4_recruitment` INNER  JOIN  hr1_applicant_apply on  hr1_applicant_apply.recruitment_id=hr4_recruitment.recruitment_id INNER JOIN hr1_applicant on
-hr1_applicant.code=hr1_applicant_apply.applicant_id  where hr1_applicant_apply.status='Hired'");// Fetch all new employees
+    $newEmployees = DB::select("SELECT *,hr1_applicant_apply.status as applicant_status,hr1_applicant_apply.applicant_id as appid,hr4_recruitment.department as dep FROM `hr4_recruitment` INNER  JOIN  hr1_applicant_apply on  hr1_applicant_apply.recruitment_id=hr4_recruitment.recruitment_id INNER JOIN hr1_applicant on
+hr1_applicant.applicant_id=hr1_applicant_apply.applicant_id  where hr1_applicant_apply.status='Passed' 
+|| hr1_applicant_apply.status='deploy'");// Fetch all new employees
     return view('content.apps.newhire', compact('newEmployees'));
   }
 
+
+public function deploy(Request $request){
+
+       $id=$request->deployed;
+       $approved = apply::where('apply_id',$id);
+       if(!$approved){
+             return abort(404);
+      }
+      $approved->update(['status' =>'deploy',]);
+      return back();
+}
 
 }

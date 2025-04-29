@@ -62,7 +62,7 @@ body{
       <a class="nav-item nav-link" href="javascript:void(0) "  style="font-size:20px">About</a>
       <a class="nav-item nav-link" href="javascript:void(0) "  style="font-size:20px">Contact</a>
        <a class="nav-item nav-link" href="javascript:void(0) "  style="font-size:20px;position:relative;top:-5px;"><button class="btn btn-success ">Sign up</button></a>
-       <a class="nav-item nav-link" href="javascript:void(0) "  style="font-size:20px;position:relative;top:-5px;"><button class="btn btn-success" id="login">Login</button></a>
+       <a class="nav-item nav-link" href="{{url('/')}}"  style="font-size:20px;position:relative;top:-5px;"><button class="btn btn-success" id="login">Login</button></a>
 
    </div>
    </div>
@@ -286,10 +286,10 @@ body{
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> SA PUSO MO</p>
+          <p><i class="fas fa-home me-3"></i></p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            gersonpuzon@example.com
+            @example.com
           </p>
           <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
           <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
@@ -323,3 +323,13 @@ body{
       $('#login_modal').modal('hide');
     });
   </script>
+
+
+
+  <script>
+  var msg = '{{Session::get('alert')}}';
+  var exist = '{{Session::has('alert')}}';
+  if(exist){
+    alert(msg);
+  }
+</script>

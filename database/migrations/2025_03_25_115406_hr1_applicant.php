@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hr1_applicant', function (Blueprint $table) {
-      $table->id('applicant_id');
-            $table->string('code')->nullable();
+    
+   Schema::create('hr1_applicant', function (Blueprint $table) {
+            $table->string('applicant_id')->nullable();
+            $table->primary(['applicant_id']);
             $table->string('firstname')->nullable();
             $table->string('middlename')->nullable();
             $table->string('lastname')->nullable();
@@ -28,8 +29,7 @@ return new class extends Migration
              $table->string('job_position')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
-  //
-          });
+         });
     }
 
     /**

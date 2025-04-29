@@ -14,7 +14,7 @@ class jobportalprofileController extends Controller
 
     $id=Auth::user()->code_id;
 
-  $profiles = DB::select("select  * FROM `hr1_applicant` where  code='$id' ");
+  $profiles = DB::select("select  * FROM `hr1_applicant` where  applicant_id='$id' ");
 
 
       $pageConfigs = ['myLayout' => 'blank'];
@@ -48,6 +48,24 @@ $app = signup::where('applicant_id',$id);
     return back();
        
     }
+
+
+
+        public function storefile(Request $request){
+
+
+
+        $file = $request->file('resume');
+
+        $fileName = time() . '_' . $file->getClientOriginalName();
+     $file-> move(public_path('assets\img'),$fileName);
+       
+
+$id=$request->applicant_id;
+  DB::select("update hr1_applicant set resume='$fileName' where  applicant_id='$id'");
+        return redirect()->back()->with('message', 'File uploaded successfully.');
+    }
+
 
 
 

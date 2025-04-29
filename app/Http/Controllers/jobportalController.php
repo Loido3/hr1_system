@@ -48,7 +48,7 @@ public function login(Request $request){
 
 if($user->role=='admin'){
   Auth::login($user);
-  return redirect('/recruitment');
+  return redirect('/dashboard/view');
 }else{
   Auth::login($user);
    return redirect('/');

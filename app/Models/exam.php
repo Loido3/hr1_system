@@ -5,16 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class apply extends Model
+class exam extends Model
 {
     use HasFactory;
 
-        protected $table="hr1_applicant_apply";
+
+        protected $table="hr1_exam_applicant";
     protected $fillable = [
-        'recruitment_id',
+        'id',
         'applicant_id',
-        'date_hired',
+        'duration',
+          'examination_title',
         'status',
+          'score',
                
     ];
 }
+

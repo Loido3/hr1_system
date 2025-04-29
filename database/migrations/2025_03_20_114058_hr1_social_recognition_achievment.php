@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
-         Schema::create('hr4_deduction', function (Blueprint $table) {
-      $table->id('deduction_id');
+     Schema::create('hr1_social_recognition_achievement', function (Blueprint $table) {
+      $table->id('achievement_id');
             $table->string('employee_id')->nullable();
-            $table->string('pagibig')->nullable();
-            $table->string('sss')->nullable();
-            $table->string('philhealth')->nullable();
-            $table->string('status')->nullable();
+            $table->string('achievement')->nullable();
+            $table->string('recognition_message')->nullable();
+            $table->string('date')->nullable();
             $table->timestamps();
   //
           });

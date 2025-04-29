@@ -44,8 +44,6 @@ $customizerHidden = 'customizer-hide';
   }
 
 
-
-
 </style>
 @section('content')
 <div class="container-xxl  " style="padding:0;">
@@ -61,10 +59,6 @@ $customizerHidden = 'customizer-hide';
       <a class="nav-item nav-link active" href="{{url('/')}}" style="font-size:20px">Home</a>
       <a class="nav-item nav-link" href="{{url('/about')}} "  style="font-size:20px">About</a>
       <a class="nav-item nav-link" href="javascript:void(0) "  style="font-size:20px">Contact</a>
-
-
-
-
       <?php   if (Auth::user()) {?>
         <a class="nav-item nav-link" href="{{url('/jobportal') }}"  style="font-size:20px">Profile Account</a>
         <a class="nav-item nav-link" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  style="font-size:20px;position:relative;top:-5px;"><button class="btn btn-success" >Logout</button></a>
@@ -97,7 +91,7 @@ $customizerHidden = 'customizer-hide';
   ?>
   <div class="d-flex justify-content-center align-items-center">
     <div class="card" style="width:50rem;" style="margin-top:10%;">
-      <img class="card-img-top" src="{{asset('assets/img/gg.jfif')}}" alt="Card image cap" style="height:300px;">
+      <img class="card-img-top" src="{{asset('assets/img/job.jpg')}}" alt="Card image cap" style="height:300px;">
       <div class="card-body">
         <h5 class="card-title " style="color:blue;font-size:30px;"><?php echo $jobs->jobrole; ?></h5>
         <p class="card-text">Philippines Inc</p>
@@ -107,6 +101,7 @@ $customizerHidden = 'customizer-hide';
         <span style="display:flex;" class="mt-1"> <i class="fas fa-money-bill-wave-alt"></i><p class="card-text" style="position:relative;top:px;left:5px;"><?php echo $jobs->salary; ?></p></span>
         <div class="card">
           <div class="card-body">
+            <h5>Job Description</h5>
             <p>
               <?php echo $jobs->description; ?>
             </p>

@@ -42,7 +42,7 @@ class Login extends Controller
       // Try to authenticate
       if (Auth::attempt($credentials, $request->filled('remember-me'))) {
           // Authentication passed
-          return redirect()->route('recruitment.index'); // Adjust to your desired route after login
+          return redirect()->route('dashboard-view.index'); // Adjust to your desired route after login
       }
 
       // If authentication fails

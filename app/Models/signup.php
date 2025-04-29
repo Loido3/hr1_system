@@ -30,10 +30,8 @@ class signup extends Model
     'resume',
     'image',
     'status',
-       'code',
-        'gender',
-       'job_position',
-
+    'gender',
+    'job_position',
 ];
 
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -19,16 +18,21 @@ class UseraccountController extends Controller
   public function store(Request $request)
   {
 
-    User::create([
-      'name' => $request->name,
-      'password' => $request->password,
-      'email' => $request->email,
-      'status'=>'Active',
-      'role'=>'admin'
-    ]);
+    $existingUser = DB::table('users')->where('email', $request->email)->first();
 
-    return back();
+    if ($existingUser) {
+      return redirect()->back()->with('alert', 'Oops! This email already exists.');
+    } else {
+      User::create([
+        'name' => $request->name,
+        'password' => $request->password,
+        'email' => $request->email,
+        'status'=>'Active',
+        'role'=>'admin'
+      ]);
+      return redirect()->back()->with('alert', 'SUCCESS REGISTER');
 
+    }
   }
 
 
@@ -51,7 +55,7 @@ class UseraccountController extends Controller
      'email' => $request->emailupdate, 
      'role' => $request->roleupdate, 
      'status' => $request->statusupdate, ]);
-      return back();
+    return back();
 
   }
 

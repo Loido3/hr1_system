@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class apply extends Model
+class social extends Model
 {
     use HasFactory;
 
-        protected $table="hr1_applicant_apply";
+        protected $table="hr1_social_recognition";
     protected $fillable = [
-        'recruitment_id',
-        'applicant_id',
-        'date_hired',
-        'status',
+        'social_id',
+        'employee_id',
+        'performance_review',
+        'rating',
+        'feed_back','date',
                
     ];
+
 }

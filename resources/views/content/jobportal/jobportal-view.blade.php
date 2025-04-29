@@ -1,8 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-
-
 @php
 $customizerHidden = 'customizer-hide';
 @endphp
@@ -43,9 +41,6 @@ $customizerHidden = 'customizer-hide';
   body{
     background-color:white;
   }
-
-
-
 
 </style>
 @section('content')
@@ -101,9 +96,22 @@ $customizerHidden = 'customizer-hide';
                     <button type="button" data-mdb-button-init data-mdb-ripple-init  class="btn btn-primary" style="width:100%;" id="edit_profile">UPDATE INFO</button>
                   </div>
 
-                     <div class="d-flex justify-content-center mb-2">
-                    <button type="button" data-mdb-button-init data-mdb-ripple-init  class="btn btn-primary" style="width:100%;" id="edit_profile">UPLOAD RESUME</button>
-                  </div>
+                       <?php $r=$prof->resume;
+                    if(empty($r)){?>
+
+                      <div class="d-flex justify-content-center mb-2">
+                       
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init  class="btn btn-primary" style="width:100%;" id="open_resume">UPLOAD RESUME</button>
+                      </div>
+
+                    <?php }else{?>
+                      <div class="d-flex justify-content-center mb-2">
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init  class="btn btn-primary" style="width:100%;" id="open_resume">UPDATE RESUME</button>
+                      </div>
+                    <?php }
+
+
+                    ?>
 
 
                 </div>
@@ -178,7 +186,6 @@ $customizerHidden = 'customizer-hide';
                 </div>
               </div>
               <hr>
-
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Email:</p>
@@ -188,17 +195,8 @@ $customizerHidden = 'customizer-hide';
                 </div>
               </div>
               <hr>
-
-              
-
-
-              
             </div>
           </div>
-
-
-
-
         </div>
       </div>
     </div>
@@ -239,10 +237,9 @@ $customizerHidden = 'customizer-hide';
    <form method="POST"   action="{{route('jobportal.storeImage')}}" enctype="multipart/form-data">
     @csrf
     @method('POST')
-
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-center" style="text-align:center;">UPLOAD PROFILE PICTURE</h5>
+        <h5 class="modal-title text-center" style="text-align:center;">PROFILE INFORMATION</h5>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -301,6 +298,34 @@ $customizerHidden = 'customizer-hide';
 </div>
 </div>
 
+
+  <div class="modal" tabindex="-1" role="dialog" id="resume_modal">
+    <div class="modal-dialog" role="document">
+     <form method="POST"   action="{{url('uploadresume')}}" enctype="multipart/form-data">
+      @csrf
+      @method('POST')
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" style="text-align:center;">UPLOAD RESUME</h5>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>UPLOAD RESUME</label>
+            <input  type="file" class="form-control" name="resume">
+          </div>
+
+          <input  type="text" class="form-control" name="applicant_id" value="{{$prof->applicant_id}}"style="display:none;">
+
+          <div class="modal-footer">
+            <button type="submit" name="submit" class="btn btn-primary">SAVE</button>
+            <button type="button" class="btn btn-danger" id="modal_close">Close</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 
@@ -408,10 +433,9 @@ $customizerHidden = 'customizer-hide';
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> SA PUSO MO</p>
+          <p><i class="fas fa-home me-3"></i></p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            gersonpuzon@example.com
           </p>
           <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
           <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
@@ -422,7 +446,6 @@ $customizerHidden = 'customizer-hide';
     </div>
   </section>
   <!-- Section: Links  -->
-
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2021 Copyright:
@@ -431,8 +454,6 @@ $customizerHidden = 'customizer-hide';
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-
-
 </div>
 @endsection
 
@@ -454,5 +475,16 @@ $customizerHidden = 'customizer-hide';
   });
   $(document).on('click', '#applicant_close', function () {
     $('#profile_modal').modal('hide');
+  });
+</script>
+
+
+
+<script >
+  $(document).on('click', '#open_resume', function () {
+    $('#resume_modal').modal('show');
+  });
+  $(document).on('click', '#modal_close_resume', function () {
+    $('#resume_modal').modal('hide');
   });
 </script>
