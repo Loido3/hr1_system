@@ -144,7 +144,7 @@ body{
 
   <div class="col-md-6">
     <div class="form-group ">
-    <label>Number</label>
+    <label>Contact Number</label>
   <input type="number" name="contact" class="form-control" style="background-color: inherit; border-top: none; border-left: none; border-right: none; box-shadow: none !important; border-color: #000 !important;" required>
 </div>
   </div>

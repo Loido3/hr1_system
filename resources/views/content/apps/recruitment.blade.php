@@ -1,17 +1,13 @@
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 @extends('layouts/layoutMaster')
 @section('title', 'RECRUITEMENT')
 @section('vendor-style')
 @vite('resources/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.scss')
 @endsection
-
 @section('page-style')
 @vite('resources/assets/vendor/scss/pages/app-chat.scss')
 @endsection
-
 @section('vendor-script')
 @vite('resources/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js')
 @endsection
@@ -59,34 +55,78 @@
        <td>
         <?php if($row->status=='pending'){?>
          <span class="badge bg-danger">{{ $row->status}}</span>
-          <?php }else if($row->status=='on-going'){?>
-              <span class="badge bg-success">{{ $row->status}}</span>
-       <?php }else{?>
-         <span class="badge bg-primary">{{ $row->status}}</span>
-       <?php }?>
-</td>
-       <td>{{ $row->created_at}}</td>
-       <td>
+       <?php }else if($row->status=='on-going'){?>
+        <span class="badge bg-success">{{ $row->status}}</span>
+         <?php }else if($row->status=='Occupied'){?>
+        <span class="badge bg-label-info">{{ $row->status}}</span>
+      <?php }else{?>
+       <span class="badge bg-primary">{{ $row->status}}</span>
+     <?php }?>
+   </td>
+   <td>{{ $row->created_at}}</td>
+   <td>
+    <div class="dropdown">
+      <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+        <i class="ti ti-dots-vertical"></i>
+      </button>
+      <div class="dropdown-menu">
         <?php if($row->status=='pending'){?>
           <form method="POST" action="{{route('Recruiteupdate')}}" class="p-0 m-0">
             @csrf
             @method('POST')
-            <input type="type" name="recruitment_id_insert"  value="{{$row->recruitment_id}}" style="display:none;">
-            <input type="type" name="status_insert"  value="Approved" style="display:none;">
-            <button type="submit" name="submit" class=" btn btn-primary btn-sm  btn-flat m-0" id="update_btn">Approved</button>
-          </form>     
-        <?php  }else{?>
+            <a class="dropdown-item">
+              <input type="type" name="recruitment_id_insert"  value="{{$row->recruitment_id}}" style="display:none;">
+              <input type="type" name="status_insert"  value="Approved" style="display:none;">
+              <button type="submit" name="submit" class=" btn btn-primary btn-sm  btn-flat m-0" id="update_btn"><i class="fa-solid fa-check-double"></i></button>
+              Approved
+            </a>
+          </form>
+          <?php }else if($row->status=='on-going'){ ?>
+            <form method="POST" action="{{route('occupiedupdate')}}" class="p-0 m-0">
+              <a class="dropdown-item">
+                @csrf
+                @method('POST')
+                <input type="type" name="occupied_id"  value="{{$row->recruitment_id}}" style="display:none;">
+                <button type="submit" name="submit" class=" btn btn-primary btn-sm  btn-flat m-0" id="update_btn"><i class="fas fa-exclamation-circle"></i></button>
+                Occupied
+              </a>
+            </form>
 
-          <button class=" btn btn-primary btn-sm  btn-flat m-0" id="post_open">Post
-          </button>
+             <?php }else if($row->status=='Approved'){ ?>
+            <a class="dropdown-item">
+              <button class=" btn btn-primary btn-sm  btn-flat m-0" id="post_open"><i class="fas fa-check-circle"></i>
+              </button>
+              Post
+            </a>
+
+          <?php  }else{?>
+                <form method="POST" action="{{route('Deleted')}}" class="p-0 m-0">
+             <a class="dropdown-item">
+               @csrf
+                @method('POST')
+                <input type="type" name="deleted_id"  value="{{$row->recruitment_id}}" style="display:none;">
+              <button class=" btn btn-danger btn-sm  btn-flat m-0" ><i class="fas fa-trash-alt"></i></i>
+              </button>
+              Delete
+            </a>
+          </form>
+
+          <?php }?>
+        </div>
+      </div>
 
 
 
-        <?php  }?>
-      </td>
-    </tr>
-    @endforeach
-  </tbody>
+
+
+
+
+
+
+    </td>
+  </tr>
+  @endforeach
+</tbody>
 </table>
 </div>
 </div>
@@ -99,14 +139,14 @@
   <div class="modal-dialog" role="document">
     <form  action="{{route('Recruiteupdating')}}" id="formAuthentication" class="mb-3" method="POST">
       @csrf
-        @method('POST')
+      @method('POST')
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">REQUEST</h5>
         </div>
         <div class="modal-body">
 
-            <div class="form-group">
+          <div class="form-group">
             <label>Job Roles</label>
             <input  type="text" class="form-control" name="post_id" id="post_id"  style="display:none;" >
           </div>
@@ -120,32 +160,32 @@
             <label>Department</label>
             <input type="" name="" class="form-control"  id="department" disabled>
             <option></option>
-        
-        </div>
 
-        <div class="form-group">
-          <label>SALARY</label>
-          <input  type="text" class="form-control" name="salary" id="salary" disabled >
-        </div>
+          </div>
 
-        <div class="form-group">
-          <label>TIME</label>
-          <input  type="text" class="form-control" name="jobrole"  id="time" disabled>
-        </div>
-       
-        <div class="form-group">
-          <label>status</label>
-          <input  type="text" class="form-control" name="status"  value="on-going"  style="display:none;">
-        </div>
-        <div class="modal-footer">
-          <button type="submit" name="submit" class="btn btn-primary">POST</button>
-          <button type="button" class="btn btn-danger" id="modal_close">Close</button>
+          <div class="form-group">
+            <label>SALARY</label>
+            <input  type="text" class="form-control" name="salary" id="salary" disabled >
+          </div>
+
+          <div class="form-group">
+            <label>TIME</label>
+            <input  type="text" class="form-control" name="jobrole"  id="time" disabled>
+          </div>
+
+          <div class="form-group">
+            <label>status</label>
+            <input  type="text" class="form-control" name="status"  value="on-going"  style="display:none;">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" name="submit" class="btn btn-primary">POST</button>
+            <button type="button" class="btn btn-danger" id="modal_close">Close</button>
+          </div>
         </div>
       </div>
-    </div>
 
-  </form>
-</div>
+    </form>
+  </div>
 </div>
 
 
@@ -164,7 +204,7 @@
     $('#department').val(tr.eq(2).text());
     $('#salary').val(tr.eq(3).text());
     $('#time').val(tr.eq(4).text());
-      $('#post_id').val(tr.eq(0).text());
+    $('#post_id').val(tr.eq(0).text());
   });
 
   $(document).on('click', '#close_update', function () {

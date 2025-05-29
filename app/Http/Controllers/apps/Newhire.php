@@ -7,6 +7,7 @@ use App\Models\EmployeeDocument; // If you need this, otherwise you can remove i
 use App\Models\apply; // If this is the right model, otherwise use NewHireRecord
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\signup;
 
 class Newhire extends Controller
 {
@@ -29,5 +30,21 @@ public function deploy(Request $request){
       $approved->update(['status' =>'deploy',]);
       return back();
 }
+
+
+public function updatebenefit(Request $request){
+
+       $id=$request->applicant_id;
+       $approved = signup::where('applicant_id',$id);
+       if(!$approved){
+             return abort(404);
+      }
+      $approved->update(['sss' =>$request->sss,'pagibig' =>$request->pagibig,'philhealth' =>$request->philhealth,'psa' =>$request->psa,'tin' =>$request->tin,'nbi_clearance' =>$request->clearance,]);
+      return back();
+}
+
+
+
+
 
 }

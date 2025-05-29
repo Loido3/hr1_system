@@ -94,7 +94,7 @@
                                   </a>
                               </form>
                               <a class="dropdown-item">
-                              
+
                                 <button type="button"  id="viewmodal" class="btn  btn-warning btn-sm btn-flat mb-3" style="font-size:15px;">
                                   <i class="fa-solid fa-eye"  id="viewmodal"></i>
                               </button>
@@ -104,97 +104,159 @@
 
                       </div>
                   </div>
-              </td>
-          </tr>
-          @endforeach
-      </tbody>
-  </table>
-</div>
-</div>
-</div>
-
 
 
 <!-- Modal for Viewing for  employee info -->
 <div class="modal" id="employeemodal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-        
-                <h5 style="text-align:center;margin-top:3%;" id="reviewModalLabel">Employee Information<span id="reviewEmployeeName"></span></h5>
-         
-            <div class="modal-body">
 
-<div class="row">
+            <h5 style="text-align:center;margin-top:3%;" id="reviewModalLabel">Employee Information<span id="reviewEmployeeName"></span></h5>
 
-  <div class="form-group col-md-3">
-      <label>EMPLOYEE ID</label>
-      <input type="text" class="form-control" disabled id="employeeid">   
-     </div>  
+               <div class="modal-body">
 
-       <div class="form-group col-md-3">
-      <label>FIRST NAME</label>
-      <input type="text" class="form-control" disabled id="fname">   
-     </div>
+                <div class="row">
 
-       <div class="form-group col-md-3">
-      <label>MIDDLE NAME</label>
-      <input type="text" class="form-control" disabled id="mdname">   
-     </div>
+                  <div class="form-group col-md-3">
+                      <label>EMPLOYEE ID</label>
+                      <input type="text" class="form-control" disabled id="employeeid" >   
+                  </div>  
 
-      <div class="form-group col-md-3">
-      <label>LAST NAME</label>
-      <input type="text" class="form-control" disabled id="lname">   
-     </div>
+                  <div class="form-group col-md-3">
+                      <label>FIRST NAME</label>
+                      <input type="text" class="form-control" disabled id="fname">   
+                  </div>
 
-       <div class="form-group col-md-3">
-      <label>AGE</label>
-      <input type="text" class="form-control" disabled id="age">   
-     </div>
+                  <div class="form-group col-md-3">
+                      <label>MIDDLE NAME</label>
+                      <input type="text" class="form-control" disabled id="mdname">   
+                  </div>
 
-      <div class="form-group col-md-3">
-      <label>GENDER</label>
-      <input type="text" class="form-control" disabled id="gender">   
-     </div>
+                  <div class="form-group col-md-3">
+                      <label>LAST NAME</label>
+                      <input type="text" class="form-control" disabled id="lname">   
+                  </div>
 
+                  <div class="form-group col-md-3">
+                      <label>AGE</label>
+                      <input type="text" class="form-control" disabled id="age">   
+                  </div>
 
-     <div class="form-group col-md-3">
-      <label>ADDRESS</label>
-      <input type="text" class="form-control" disabled id="address">   
-     </div>
-
-      <div class="form-group col-md-3">
-      <label>EMAIL</label>
-      <input type="text" class="form-control" disabled id="email">   
-     </div>
+                  <div class="form-group col-md-3">
+                      <label>GENDER</label>
+                      <input type="text" class="form-control" disabled id="gender">   
+                  </div>
 
 
-      <div class="form-group col-md-3">
-      <label>CONTACT NUMBER</label>
-      <input type="text" class="form-control" disabled id="contact">   
-     </div>
+                  <div class="form-group col-md-3">
+                      <label>ADDRESS</label>
+                      <input type="text" class="form-control" disabled id="address">   
+                  </div>
+
+                  <div class="form-group col-md-3">
+                      <label>EMAIL</label>
+                      <input type="text" class="form-control" disabled id="email">   
+                  </div>
 
 
-      <div class="form-group col-md-3">
-      <label>DATE HIRED</label>
-      <input type="text" class="form-control" disabled id="datehired">   
-     </div>
+                  <div class="form-group col-md-3">
+                      <label>CONTACT NUMBER</label>
+                      <input type="text" class="form-control" disabled id="contact">   
+                  </div>
+
+
+                  <div class="form-group col-md-3">
+                      <label>DATE HIRED</label>
+                      <input type="text" class="form-control" disabled id="datehired">   
+                  </div>
+
+                  <h5 style="text-align:center;margin-top:3%;" >Employee Requirements checklist <span id="reviewEmployeeName"></span></h5>
+
+
+            <form  action="{{url('updatebenefit')}}"  method="Post" >
+               @csrf
+               @method('POST')
+
+                  <div style="display:flex; text-align:center;">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="sss"  value="{{$employee->sss}}" id="sss" {{ $employee->sss}}>
+                      <label class="form-check-label" for="checkDefault">
+                        SSS
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="pagibig" id="pagibig"  value="{{$employee->pagibig}}" {{ $employee->pagibig }} >
+                  <label class="form-check-label" for="checkChecked">
+                    PAGIBIG
+                </label>
+            </div>
+
+            <input type="text" class="form-control"  id="employeeids"  name="applicant_id" style="display:none;">
+
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="philhealth"  id="philhealth"  value="{{$employee->philhealth}}" {{$employee->philhealth}} >
+              <label class="form-check-label" for="checkChecked" >
+                PHILHEALTH
+            </label>
+        </div>
+
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="tin"  id="tin" value="{{$employee->tin}}" {{$employee->tin}}>
+          <label class="form-check-label" for="checkChecked" >
+            TIN
+        </label>
+    </div>
+
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox"  name="psa"  id="psa" value="{{$employee->psa}}" {{$employee->psa}}>
+      <label class="form-check-label" for="checkChecked" >
+        PSA
+    </label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox"  name="clearance"  id="clearance" value="{{$employee->nbi_clearance}}" {{$employee->nbi_clearance}} >
+  <label class="form-check-label" for="checkChecked" >
+    NBI-CLEARANCE
+</label>
+</div>
+</div>
+<!---close--->
+<div class="modal-footer">
+
+      <div class="form-group">
+    <button class=" btn btn-primary" type="submit">Update</button>
+</div>
+  <div class="form-group">
+    <button type="button" class=" btn btn-danger" id="closemodal">close</button>
+</div>
+
+</div>
+</form>
+</div>
+
+</div>
+
+
+
 
 
 
 </div>
-     
+</div>
+</div>
 
-
-
-            </div>
-
-            <div class="modal-footer">
-                <div class="form-group">
-                    <button class=" btn btn-danger" id="closemodal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+</td>
+</tr>
+@endforeach
+</tbody>
+</table>
+</div>
+</div>
 </div>
 
 
@@ -227,14 +289,49 @@
 
 
 
-     $(document).on('click', '#closemodal', function () {
+    $(document).on('click', '#closemodal', function () {
       $('#employeemodal').hide();
   });
+
+
+    $('#sss').on('change', function () {
+        $('#sss').val(this.checked ? "checked" : "unchecked");
+    console.log("Checkbox value: " + $(this).val()); // For debugging
+});
+
+    $('#pagibig').on('change', function () {
+        $(this).val(this.checked ? "checked" : "unchecked");
+    console.log("Checkbox value: " + $(this).val()); // For debugging
+});
+
+
+    $('#tin').on('change', function () {
+        $(this).val(this.checked ? "checked" : "unchecked");
+    console.log("Checkbox value: " + $(this).val()); // For debugging
+});
+
+    $('#psa').on('change', function () {
+        $('#psa').val(this.checked ? "checked" : "unchecked");
+    console.log("Checkbox value: " + $(this).val()); // For debugging
+});
+
+    $('#philhealth').on('change', function () {
+        $(this).val(this.checked ? "checked" : "unchecked");
+    console.log("Checkbox value: " + $(this).val()); // For debugging
+});
+
+    $('#clearance').on('change', function () {
+        $(this).val(this.checked ? "checked" : "unchecked");
+    console.log("Checkbox value: " + $(this).val()); // For debugging
+});
+
+
     $(document).on('click', '#viewmodal', function () {
       $('#employeemodal').show();
-       $('form')[0].reset();
+      $('form')[0].reset();
       var tr = $(this).closest("tr").find('td');
       $('#employeeid').val(tr.eq(0).text());
+      $('#employeeids').val(tr.eq(0).text());
       $('#fname').val(tr.eq(6).text());
       $('#mdname').val(tr.eq(7).text());
       $('#lname').val(tr.eq(8).text());
@@ -242,8 +339,8 @@
       $('#gender').val(tr.eq(10).text());
       $('#address').val(tr.eq(11).text());
       $('#email').val(tr.eq(12).text());
-       $('#contact').val(tr.eq(13).text());
-       $('#datehired').val(tr.eq(4).text());
+      $('#contact').val(tr.eq(13).text());
+      $('#datehired').val(tr.eq(4).text());
   });
 </script>
 @endsection

@@ -32,6 +32,12 @@ class signup extends Model
     'status',
     'gender',
     'job_position',
+    'pagibig',
+    'sss',
+    'psa',
+    'philhealth',
+    'nbi_clearance',
+    'tin',
 ];
 
 

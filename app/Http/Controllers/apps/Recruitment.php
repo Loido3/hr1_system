@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Recruite;
 
+use Illuminate\Support\Facades\DB;
+
 class Recruitment extends Controller
 {
   public function index()
@@ -13,7 +15,7 @@ class Recruitment extends Controller
      // Fetch all recognitions from the database
 
 
-            $Recruite = Recruite::all(); 
+            $Recruite = DB::SELECT("select * from hr4_recruitment where  status='Occupied' || status='Approved' || status='on-going' "); 
     return view('content.apps.recruitment',['Recruite' => $Recruite]);
   }
 
@@ -30,6 +32,31 @@ $id=$request->recruitment_id_insert;
     return back();
     }
 
+      public function occupiedupdate(Request $request){
+$id=$request->occupied_id;
+ $Recruite_update = Recruite::where('recruitment_id',$id);
+        if(!$Recruite_update){
+               return abort(404);
+             }
+        $Recruite_update->update([
+            'status' =>'Occupied',
+        ]);
+    return back();
+    }
+
+     public function Deleted(Request $request){
+$id=$request->deleted_id;
+ $Recruite_update = Recruite::where('recruitment_id',$id);
+        if(!$Recruite_update){
+               return abort(404);
+             }
+        $Recruite_update->update([
+            'status' =>'Deleted',
+        ]);
+    return back();
+    }
+
+
 
         public function Recruiteupdating(Request $request){
         // dd($request->all());
@@ -41,12 +68,12 @@ $id=$request->post_id;
              }
         $leave->update([
             'status' => $request->status,
-   
         ]);
     return back();
-
-
 }
+
+
+
 
 
 }

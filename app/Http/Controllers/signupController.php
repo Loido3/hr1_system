@@ -13,14 +13,9 @@ class signupController extends Controller
 {
      public function index()
   {
-
-
-
-
       $pageConfigs = ['myLayout' => 'blank'];
-            return view('content.jobportal.signup',['pageConfigs' => $pageConfigs]);
-
-        }
+       return view('content.jobportal.signup',['pageConfigs' => $pageConfigs]);
+   }
 
     public function store(Request $request){
 
@@ -39,8 +34,8 @@ class signupController extends Controller
  $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
        $date = new DateTime('now', new DateTimeZone('Asia/Manila'));
- $Date=$date->format('Ymdhis');
-   $random =substr(str_shuffle(str_repeat($pool, 5)), 0, 8);
+       $Date=$date->format('Ymdhis');
+       $random =substr(str_shuffle(str_repeat($pool, 5)), 0, 8);
         signup::create([
             'applicant_id' =>$Date,
             'firstname' => $request->first,

@@ -27,7 +27,15 @@
       "name": "APPLICANT MANAGEMENT",
       "icon": "menu-icon tf-icons ti ti-messages",
       "slug": "applicant"
-    },     {
+    },
+   {
+      "url": "/applicant/scheduling/view",
+      "name": "APPLICANT SCHEDULING",
+      "icon": "menu-icon tf-icons ti ti-clock",
+      "slug": "applicant-scheduling-view"
+    },
+
+    {
       "url": "applicant/exam",
       "name": "APPLICANT EXAM",
       "icon": "menu-icon tf-icons ti ti-clock",
@@ -65,7 +73,5 @@
       "icon": "menu-icon tf-icons ti ti-user ",
       "slug": "user-account"
     }
-
-
   ]
 }

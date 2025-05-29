@@ -246,10 +246,6 @@
 </script>
 
 <script type="text/javascript">
-
-
-  
-
       $('#myInput').keyup(function(){
 // Search text
       var text = $(this).val();
@@ -259,7 +255,14 @@
 // Search 
       $('.contents .titles:contains("'+text+'")').closest('.contents').show();
     });
+</script>
 
 
 
+  <script>
+  var msg = '{{Session::get('alert')}}';
+  var exist = '{{Session::has('alert')}}';
+  if(exist){
+    alert(msg);
+  }
 </script>

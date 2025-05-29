@@ -5,6 +5,7 @@ namespace App\Http\Controllers\apps;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\performancemodel;
+use App\Models\social;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 use DateTimeZone;

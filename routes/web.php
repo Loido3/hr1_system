@@ -7,10 +7,6 @@ use App\Http\Controllers\dashboard\Crm;
 use App\Http\Controllers\apps\Applicant;
 use App\Http\Controllers\apps\Performance;
 use App\Http\Controllers\apps\Newhire;
-
-
-
-
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\layouts\CollapsedMenu;
 use App\Http\Controllers\layouts\ContentNavbar;
@@ -30,9 +26,6 @@ use App\Http\Controllers\front_pages\Payment;
 use App\Http\Controllers\front_pages\Checkout;
 use App\Http\Controllers\front_pages\HelpCenter;
 use App\Http\Controllers\front_pages\HelpCenterArticle;
-
-
-
 use App\Http\Controllers\apps\EcommerceDashboard;
 use App\Http\Controllers\apps\EcommerceProductList;
 use App\Http\Controllers\apps\EcommerceProductAdd;
@@ -41,7 +34,6 @@ use App\Http\Controllers\apps\EcommerceOrderList;
 use App\Http\Controllers\apps\EcommerceOrderDetails;
 use App\Http\Controllers\apps\EcommerceCustomerDetailsOverview;
 use App\Http\Controllers\apps\EcommerceCustomerDetailsSecurity;
-
 use App\Http\Controllers\apps\EcommerceCustomerDetailsNotifications;
 use App\Http\Controllers\apps\EcommerceManageReviews;
 use App\Http\Controllers\apps\EcommerceReferrals;
@@ -67,7 +59,6 @@ use App\Http\Controllers\apps\UserViewSecurity;
 use App\Http\Controllers\apps\UserViewBilling;
 use App\Http\Controllers\apps\UserViewNotifications;
 use App\Http\Controllers\apps\UserViewConnections;
-
 use App\Http\Controllers\apps\AccessPermission;
 use App\Http\Controllers\pages\UserProfile;
 use App\Http\Controllers\pages\UserTeams;
@@ -166,11 +157,6 @@ use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\maps\Leaflet;
 
 
-
-
-
-
-
 Route::middleware('auth')->group(function(){
 Route::post('/deleted', [App\Http\Controllers\UseraccountController::class,'destroy'])->name('destroy');
 Route::post('/updateuser', [App\Http\Controllers\UseraccountController::class,'update'])->name('update');
@@ -209,7 +195,24 @@ Route::get('/jobqualification/view', [App\Http\Controllers\job_controller::class
 
 Route::post('/jobqualification/view', [App\Http\Controllers\job_controller::class,'update'])->name('update');
 Route::post('/Recruiteupdating', [App\Http\Controllers\apps\Recruitment::class,'Recruiteupdating'])->name('Recruiteupdating');
+
 Route::post('/Recruiteupdate', [App\Http\Controllers\apps\Recruitment::class, 'Recruiteupdate'])->name('Recruiteupdate');
+
+Route::post('/occupiedupdate', [App\Http\Controllers\apps\Recruitment::class, 'occupiedupdate'])->name('occupiedupdate');
+Route::post('/Deleted', [App\Http\Controllers\apps\Recruitment::class, 'Deleted'])->name('Deleted');
+
+
+Route::post('/createscheduling', [App\Http\Controllers\schedulingController::class,'scheduling'])->name('scheduling');
+
+Route::post('updateschedule', [App\Http\Controllers\schedulingController::class,'updateschedule'])->name('updateschedule');
+
+
+
+Route::get('/applicant/scheduling/view', [App\Http\Controllers\schedulingController::class,'index'])->name('applicant-scheduling-view');
+
+
+
+
 Route::get('/recruitment', [App\Http\Controllers\apps\Recruitment::class, 'index'])->name('recruitment');
 Route::post('/recruitment', [App\Http\Controllers\apps\Recruitment::class, 'application'])->name('recruitment.application');
 
@@ -225,7 +228,6 @@ Route::get('/auth/logi/basic', [Login::class, 'index'])->name('auth-login-basic'
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
 // locale
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
-
 // layout
 Route::get('/layouts/collapsed-menu', [CollapsedMenu::class, 'index'])->name('layouts-collapsed-menu');
 Route::get('/layouts/content-navbar', [ContentNavbar::class, 'index'])->name('layouts-content-navbar');
@@ -255,16 +257,14 @@ Route::post('/deployed', [Newhire::class, 'deploy'])->name('deploy'); // For sto
 Route::get('/performance', [Performance::class, 'index'])->name('performance');
 Route::post('/performancestore', [Performance::class, 'store'])->name('store');
 Route::post('/performanceupdate', [Performance::class, 'updateperformance'])->name('updateperformance');
-
-
-
+Route::post('/updatebenefit', [Newhire::class, 'updatebenefit'])->name('updatebenefit'); 
 // Route for displaying the form
 Route::get('/recognition', [Recognition::class, 'index'])->name('recognition.index');
 // Route for storing the recognition
-
 Route::post('/socialrecognition', [Recognition::class, 'store'])->name('store');
 Route::post('/socialrecognitionstore', [Recognition::class, 'storerecog'])->name('storerecog');
-
+//certificate
+Route::post('/certificate', [Recognition::class, 'certificate'])->name('certiificate');
 
 Route::get('/app/ecommerce/dashboard', [EcommerceDashboard::class, 'index'])->name('app-ecommerce-dashboard');
 Route::get('/app/ecommerce/product/list', [EcommerceProductList::class, 'index'])->name('app-ecommerce-product-list');
